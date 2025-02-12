@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ultra Realistic Candle with Waving Flame</title>
+  <style>
+    /* Basic page styling */
+    body {
+      background: #222;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* The candle container */
+    .candle {
+      position: relative;
+      width: 50px;
+      height: 200px;
+      background: linear-gradient(to bottom, #fff7e1, #e6cfa1);
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* A pseudo-element to simulate melted wax drips at the bottom */
+    .candle::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: #fdd7aa;
+      border-radius: 50%;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* The wick at the top of the candle */
+    .wick {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 20px;
+      background: #333;
+      border-radius: 2px;
+    }
+
+    /* The outer flame */
+    .flame {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(ellipse at center, #ff6600, transparent 70%);
+      border-radius: 50% 50% 40% 40%;
+      filter: blur(1px);
+      animation: flicker 0.5s infinite ease-in-out;
+    }
+
+    /* A glow effect behind the flame */
+    .flame::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(255, 102, 0, 0.4), transparent 70%);
+      transform: translate(-50%, -50%);
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    /* The inner (yellowish) part of the flame */
+    .inner-flame {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 30px;
+      background: radial-gradient(ellipse at center, #ffff66, transparent 70%);
+      border-radius: 50% 50% 40% 40%;
+      animation: flicker-inner 0.5s infinite ease-in-out;
+    }
+
+    /* Keyframes for the outer flame flicker with a slight horizontal wobble */
+    @keyframes flicker {
+      0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      25% {
+        transform: translateX(calc(-50% + 2px)) translateY(-2px) scale(1.05);
+      }
+      50% {
+        transform: translateX(-50%) translateY(-3px) scale(1.1);
+      }
+      75% {
+        transform: translateX(calc(-50% - 2px)) translateY(-2px) scale(1.05);
+      }
+      100% {
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+    }
+
+    /* Keyframes for the inner flame flicker */
+    @keyframes flicker-inner {
+      0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      25% {
+        transform: translateX(calc(-50% + 1px)) translateY(-1px) scale(1.02);
+      }
+      50% {
+        transform: translateX(-50%) translateY(-2px) scale(1.05);
+      }
+      75% {
+        transform: translateX(calc(-50% - 1px)) translateY(-1px) scale(1.02);
+      }
+      100% {
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="candle">
+    <div class="wick"></div>
+    <div class="flame">
+      <div class="inner-flame"></div>
+    </div>
+  </div>
+</body>
+</html>
